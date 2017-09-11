@@ -10,6 +10,7 @@ public class Aluguel {
 	private double valorTotal = 0.0;
 
 	public Aluguel(Fita fita, int diasAlugados) {
+		
 		this.fita = fita;
 		this.diasAlugada = diasAlugados;
 
@@ -21,6 +22,7 @@ public class Aluguel {
 
 	public int getDiasALugada() {
 		return diasAlugada;
+		
 
 	}
 
@@ -60,6 +62,9 @@ public class Aluguel {
 				valorCorrente += (getDiasALugada() - 3) * 1.5;
 			}
 			break;
+		default :
+			System.out.println("OPÇÃO INVÁLIDA!!!");
+			
 		}// FIM DO SWITCH
 			// TRATA DE PONTOS DE ALUADOR FREQUENTE
 		pontosDeAlugadorFrequenta++;

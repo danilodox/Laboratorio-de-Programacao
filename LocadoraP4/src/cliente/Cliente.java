@@ -15,7 +15,7 @@ public class Cliente {
 	}
 	
 	
-	public boolean adiconaAluguel(String titulo, String tipoDeFita, int diasAlugados) {
+	public boolean adicionaAluguel(String titulo, String tipoDeFita, int diasAlugados) {
 		Fita fita = new Fita(titulo, tipoDeFita);
 		
 		Aluguel aluguel = new Aluguel(fita, diasAlugados);

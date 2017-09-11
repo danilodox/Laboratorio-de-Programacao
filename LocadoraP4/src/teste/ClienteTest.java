@@ -16,7 +16,7 @@ public class ClienteTest {
 	@Before
 	public void criaCliente() {
 		cliente = new Cliente("Danilo");
-		cliente.adiconaAluguel("Ate o ultimo soldado", "NORMAL", 50);
+		cliente.adicionaAluguel("Ate o ultimo soldado", "NORMAL", 50);
 		
 		Fita fita = new Fita("O chamado", "NORMAL");
 		aluguel = new Aluguel(fita, 90);
@@ -25,12 +25,26 @@ public class ClienteTest {
 	@Test
 	public void testAdiconaAluguel() {
 		
-		assertTrue(cliente.adiconaAluguel("Vida", "NORMAL", 6));
+		
+		
+		assertTrue(cliente.adicionaAluguel("Vida", "NORMAL", 6));
 		assertFalse(cliente.verificaAluguel("O chamado"));
-		cliente.adiconaAluguel(aluguel.getFita().getTitulo(), aluguel.getFita().getTipoDeFita(), aluguel.getDiasALugada());
+		cliente.adicionaAluguel(aluguel.getFita().getTitulo(), aluguel.getFita().getTipoDeFita(), aluguel.getDiasALugada());
 		assertTrue(cliente.verificaAluguel("Vida"));
+		
 	}
 
+	@Test(expected = java.lang.AssertionError.class)
+	public void testVerificaAluguel() {
+		assertTrue(cliente.verificaAluguel("Ate o ultimo soldado"));
+		assertFalse(cliente.verificaAluguel("Vida"));
+	}
+	
+	/*@Test(expected= IndexOutOfBoundsException.class) public void empty() { 
+    new ArrayList<Object>().get(0); 
+}*/
+	
+	
 	@Test
 	public void testGetTotalPontosDeAlugadorFrequente() {
 		assertEquals(1, cliente.getTotalPontosDeAlugadorFrequente());
