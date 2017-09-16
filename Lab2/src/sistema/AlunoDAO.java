@@ -42,7 +42,7 @@ public class AlunoDAO {
 		
 		for (int i = 0; i < caderneta.getAlunos().size(); i++) {
 			if (caderneta.getAlunos().get(i).getNome().equalsIgnoreCase(aluno.getNome())){
-				caderneta.removerDaLista(i);
+				caderneta.getAlunos().remove(i);
 				return true;
 			}
 		}

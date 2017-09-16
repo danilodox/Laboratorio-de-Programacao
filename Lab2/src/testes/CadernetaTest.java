@@ -11,7 +11,7 @@ import sistema.AlunoDAO;
 public class CadernetaTest {
 
 	AlunoDAO aluno = new AlunoDAO();
-	Aluno aluno1, aluno2, aluno3, aluno4, aluno5;
+	Aluno aluno1, aluno2, aluno3, aluno4, aluno5, aluno6;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -20,6 +20,7 @@ public class CadernetaTest {
 		aluno3 = new Aluno ("Cesar", 70, 75, 0, 60);
 		aluno4 = new Aluno ("Pedro", 85, 20, 50, 75);
 		aluno5 = new Aluno ("Marcela", 69, 69, 50, 75);
+		aluno6 = new Aluno ("Felipe", 70, 80, 0, 90);
 		
 		aluno.inserir(aluno1);
 		aluno.inserir(aluno2);
@@ -30,14 +31,17 @@ public class CadernetaTest {
 	}
 	
 	@Test
-	public void testVerificaAprovacao() {
+	public void testVerificaAprovacao() throws Exception {
+		
+		
 		assertEquals(true, aluno.getCaderneta().verificaAprovacao("Maria"));
 		assertEquals(false, aluno.getCaderneta().verificaAprovacao("Joao"));
 		assertEquals(false, aluno.getCaderneta().verificaAprovacao("Cesar"));
 		assertEquals(true, aluno.getCaderneta().verificaAprovacao("Pedro"));
 		assertEquals(true, aluno.getCaderneta().verificaAprovacao("Marcela"));
 		
-	
+		assertFalse(aluno.getCaderneta().verificaAprovacao("farinhaLactea"));
+		assertFalse(aluno.getCaderneta().verificaAprovacao("Felipe"));
 	
 	}
 
