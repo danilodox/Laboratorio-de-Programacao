@@ -2,21 +2,20 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import aluno.Aluno;
-import caderneta.Caderneta;
 import sistema.AlunoDAO;
 
 public class AlunoDAOTest {
 	AlunoDAO alunoDAO;
-	Caderneta caderneta;
 	Aluno aluno1, aluno2, aluno3, aluno4;
 	
+	@Before
 	public void criarAluno() {
 		alunoDAO = new AlunoDAO();
 		
-		caderneta = new Caderneta();
 		
 		aluno1 = new Aluno("Maria", 70, 70, 0, 80);
 		aluno2 = new Aluno("Joao", 50, 50, 40, 85);
@@ -27,21 +26,33 @@ public class AlunoDAOTest {
 	}
 	
 	@Test
-	public void testInserirTrue() {
+	public void testInserirTrue() throws Exception {
 		alunoDAO.inserir(aluno1);
-		assertTrue(caderneta.getAlunos().contains(aluno1));
+		alunoDAO.inserir(aluno2);
+		
+		assertTrue(alunoDAO.getCaderneta().getAlunos().contains(aluno1));
+		assertTrue(alunoDAO.getCaderneta().getAlunos().contains(aluno2));
+		assertTrue(alunoDAO.inserir(aluno3));
 	}
 	
-	@Test
-	public void testInserirFalse() {
-		assertFalse(caderneta.getAlunos().contains(aluno2));
-	}
-/*
-	@Test
-	public void testRemover() {
-		fail("Not yet implemented");
+	@Test(expected = java.lang.Exception.class)
+	public void testInserirFalse() throws Exception {
+		
+		alunoDAO.inserir(aluno1);
+		assertFalse("Aluno existente", alunoDAO.inserir(aluno1));
+		assertFalse(alunoDAO.getCaderneta().getAlunos().contains(aluno2));
+
 	}
 
+	@Test
+	public void testRemoverTrue() {
+		assertFalse(alunoDAO.remover(aluno1));
+		
+	}
+	
+	
+	
+/*
 	@Test
 	public void testAtualizar() {
 		fail("Not yet implemented");

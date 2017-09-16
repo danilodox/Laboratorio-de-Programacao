@@ -24,25 +24,29 @@ public class AlunoDAO {
 	}
 
 	//verifica se eh possivel adiciona o aluno X na caderneta
-	public void inserir(Aluno aluno){
-		boolean tem = false;
-		for (Aluno alunoDados : caderneta.getAlunos()) {
-			if (alunoDados.getNome().equalsIgnoreCase(aluno.getNome())){
-				tem = true;
-			}
+	public boolean inserir(Aluno aluno) throws Exception{
+		if (caderneta.getAlunos().contains(aluno)) {
+			throw new Exception("Aluno existente");
 		}
-		if (!tem){
-			caderneta.inserirNaLista(aluno);
-		}
+		
+		caderneta.getAlunos().add(aluno);
+		return true;
+		
 	}
 	
 	//verifica se eh possivel remover o aluno X na caderneta
-	public void remover(Aluno aluno){
+	public boolean remover(Aluno aluno) throws Exception{
+		if (!caderneta.getAlunos().contains(aluno)) {
+			throw new Exception("Aluno nao existe");
+		}
+		
 		for (int i = 0; i < caderneta.getAlunos().size(); i++) {
 			if (caderneta.getAlunos().get(i).getNome().equalsIgnoreCase(aluno.getNome())){
 				caderneta.removerDaLista(i);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	//Atualiza aluno na lista de alunos da caderneta

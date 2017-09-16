@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		AlunoDAO aluno = new AlunoDAO();
+	/*	AlunoDAO aluno = new AlunoDAO();
 	
 		aluno.inserir(new Aluno("Maria", 70, 70, 0, 80));
 		aluno.inserir(new Aluno("Joao", 50, 50, 40, 85));
@@ -34,7 +34,7 @@ public class Main {
 		
 		System.out.println(aluno.caderneta.verificaAprovacao("Maria"));
 		System.out.println(aluno.caderneta.verificaAprovacao("João"));
-	
+	*/
 	}
 
 }
