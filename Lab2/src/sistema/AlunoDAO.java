@@ -50,7 +50,11 @@ public class AlunoDAO {
 	}
 	
 	//Atualiza aluno na lista de alunos da caderneta
-	public void atualizar(Aluno alunoAntigo, Aluno alunoNovo){
+	public boolean atualizar(Aluno alunoAntigo, Aluno alunoNovo) throws Exception{
+		if (!caderneta.getAlunos().contains(alunoAntigo)) {
+			throw new Exception("Aluno nao existe");
+		}
+		
 		for (int i = 0; i < caderneta.getAlunos().size(); i++) {
 			if (caderneta.getAlunos().get(i).getNome().equalsIgnoreCase(alunoAntigo.getNome())){
 				caderneta.getAlunos().get(i).setNome(alunoNovo.getNome());
@@ -58,8 +62,10 @@ public class AlunoDAO {
 				caderneta.getAlunos().get(i).setNota2(alunoNovo.getNota2());
 				caderneta.getAlunos().get(i).setNotaFinal(alunoNovo.getNotaFinal());
 				caderneta.getAlunos().get(i).setFrequencia(alunoNovo.getFrequencia());
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	//retorna a list de alunos da caderneta com seus respectivos enderecos de memoria
@@ -68,13 +74,18 @@ public class AlunoDAO {
 	}
 	
 	//retorna o endereco de memoria do aluno 
-	public Aluno procuraAluno(String nomeAluno){
+	public Aluno procuraAluno(String nomeAluno) throws Exception{
+		
+		
+		
 		for (Aluno dadosAluno : caderneta.getAlunos()) {
+			
 			if (dadosAluno.getNome().equalsIgnoreCase(nomeAluno)){
 				return dadosAluno;
 			}
+			
 		}
-		return null;
+		throw new Exception("Aluno nao encontrado");
 	}
 	
 }

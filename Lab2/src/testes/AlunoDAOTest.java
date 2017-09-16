@@ -32,7 +32,6 @@ public class AlunoDAOTest {
 		
 		assertTrue(alunoDAO.getCaderneta().getAlunos().contains(aluno1));
 		assertTrue(alunoDAO.getCaderneta().getAlunos().contains(aluno2));
-		assertTrue(alunoDAO.inserir(aluno3));
 	}
 	
 	@Test(expected = java.lang.Exception.class)
@@ -41,31 +40,60 @@ public class AlunoDAOTest {
 		alunoDAO.inserir(aluno1);
 		assertFalse("Aluno existente", alunoDAO.inserir(aluno1));
 		assertFalse(alunoDAO.getCaderneta().getAlunos().contains(aluno2));
+		assertFalse(alunoDAO.getCaderneta().getAlunos().contains(aluno3));
 
 	}
 
 	@Test
-	public void testRemoverTrue() {
+	public void testRemoverTrue() throws Exception {
+		alunoDAO.inserir(aluno2);
+		assertTrue(alunoDAO.remover(aluno2));
+		
+	}
+	
+	@Test(expected = java.lang.Exception.class)
+	public void testRemoverFalse() throws Exception {
+		
 		assertFalse(alunoDAO.remover(aluno1));
 		
 	}
 	
 	
-	
-/*
 	@Test
-	public void testAtualizar() {
-		fail("Not yet implemented");
+	public void testAtualizarTrue() throws Exception {
+		alunoDAO.inserir(aluno1);
+		
+		assertTrue(alunoDAO.atualizar(aluno1, aluno2));
+		
 	}
+	
+	@Test(expected = java.lang.Exception.class)
+	public void testAtualizarFalse() throws Exception {
+		
+		assertFalse(alunoDAO.atualizar(aluno2, aluno3));
+	}
+	
+	
 
 	@Test
 	public void testListarAlunos() {
-		fail("Not yet implemented");
+		assertEquals(0, alunoDAO.getCaderneta().getAlunos().size());
+
 	}
 
 	@Test
-	public void testProcuraAluno() {
-		fail("Not yet implemented");
+	public void testProcuraAluno() throws Exception {
+		alunoDAO.inserir(aluno2);
+		assertEquals(this.aluno2, alunoDAO.procuraAluno("Joao"));
 	}
-*/
+	
+	@Test(expected = java.lang.Exception.class)
+	public void testProcuraAlunoFalse() throws Exception {
+		
+		assertEquals(this.aluno2, alunoDAO.procuraAluno("FarinhaLactea"));
+	}
+	
+	
+	
+
 }
