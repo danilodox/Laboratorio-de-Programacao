@@ -16,5 +16,7 @@ public abstract class Usuario {
 	
 	public abstract String getHorario() throws Exception;
 	
-	public abstract String getDisciplinas() throws Exception;
+	public abstract String getListaDisciplinas() throws Exception;
+	
+	public abstract boolean contemDisciplina(String nomeDisciplina);
 }

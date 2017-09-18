@@ -19,14 +19,13 @@ public class Professor extends Usuario {
 		mapaDeDisciplina.put(disc.getNomeDisciplina(), disc);
 	}
 
-
 	@Override
 	public String getHorario() throws Exception {
 		String horarioProf = "";
 
 		if (mapaDeDisciplina.size() > 0) {
 			for (Disciplina disciplina : mapaDeDisciplina.values()) {
-				
+
 				horarioProf += disciplina.getNomeDisciplina() + ": \n";
 				horarioProf += disciplina.getHorarioInicio() + " - " + disciplina.getHorarioFim() + "\n";
 
@@ -37,7 +36,7 @@ public class Professor extends Usuario {
 	}
 
 	@Override
-	public String getDisciplinas() throws Exception {
+	public String getListaDisciplinas() throws Exception {
 		String listaDisciplinas = "";
 
 		if (mapaDeDisciplina.size() > 0) {
@@ -52,6 +51,12 @@ public class Professor extends Usuario {
 			return listaDisciplinas;
 		}
 		throw new Exception("Nenhuma disciplina cadastrada no momento");
+	}
+
+	@Override
+	public boolean contemDisciplina(String nomeDisciplina) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
