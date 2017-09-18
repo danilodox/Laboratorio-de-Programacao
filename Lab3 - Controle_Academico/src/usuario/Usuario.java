@@ -14,4 +14,7 @@ public abstract class Usuario {
 		return nome;
 	}
 	
+	public abstract String getHorario() throws Exception;
+	
+	public abstract String getDisciplinas() throws Exception;
 }

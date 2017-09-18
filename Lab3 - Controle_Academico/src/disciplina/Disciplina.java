@@ -10,8 +10,7 @@ public class Disciplina {
 	private String horarioFim;
 	private ArrayList<Aluno> listaDeAlunos;
 
-	// qual o numero de alunos da disciplina
-
+	
 	public Disciplina(String disciplina, String horarioInicio, String horarioFim) {
 		this.disciplina = disciplina;
 		this.horarioInicio = horarioInicio;
