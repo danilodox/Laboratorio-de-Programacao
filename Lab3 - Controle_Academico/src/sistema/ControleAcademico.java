@@ -15,41 +15,40 @@ public class ControleAcademico {
 		this.mapaDeUsuarios = new HashMap<>();
 	}
 
-	public int getNumeroAlunosNaDisciplina(String nomeAluno, String nomeDisciplina) {
+	public int getNumeroAlunosNaDisciplina(String nomeDisciplina) throws Exception {
 		int numeroDeAlunos = 0;
 
-		for (int i = 0; i < mapaDeUsuarios.size(); i++) {
-
-			if (this.mapaDeUsuarios.get(nomeAluno).contemDisciplina(nomeDisciplina)) {
-				numeroDeAlunos++;
+		for (Usuario aluno : mapaDeUsuarios.values()) {
+			if (aluno instanceof Aluno) {
+				
+				if (aluno.contemDisciplina(nomeDisciplina)) {
+					numeroDeAlunos++;					
+				}
 			}
 		}
 		return numeroDeAlunos;
 
 	}
 
-	public String getAlunosNaDisciplina() throws Exception {
-		String alunoEmString = "Lista de alunos matriculados na disciplina: \n";
-		int contaAlunos = 0;
-		for (Usuario user : mapaDeUsuarios.values()) {
-			if (user instanceof Aluno) {
-				contaAlunos++;
-				alunoEmString += user.getNome() + "\n";
+	public String getAlunosNaDisciplina(String nomeDisciplina) throws Exception {
+		String alunoNaDisciplina = "";
+		for (Usuario aluno : mapaDeUsuarios.values()) {
+			if (aluno instanceof Aluno) {
+				
+				if (aluno.contemDisciplina(nomeDisciplina)) {
+					alunoNaDisciplina += aluno.toString();
+				}
 			}
 		}
-		if (contaAlunos == 0) {
-			throw new Exception("Nenhum aluno matriculado no momento.");
-		}
-		return alunoEmString;
+		return alunoNaDisciplina;
+
 	}
 
-	public void addProfessor(String nome) {
-		Professor prof = new Professor(nome);
-		mapaDeUsuarios.put(prof.getNome(), prof);
+	public void addProfessor(Professor professor) {
+		mapaDeUsuarios.put(professor.getNome(), professor);
 	}
 
-	public void addAluno(String nomeAluno) {
-		Aluno aluno = new Aluno(nomeAluno);
+	public void addAluno(Aluno aluno) {
 		mapaDeUsuarios.put(aluno.getNome(), aluno);
 	}
 

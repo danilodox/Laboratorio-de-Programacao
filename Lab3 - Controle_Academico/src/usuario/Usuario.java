@@ -19,4 +19,11 @@ public abstract class Usuario {
 	public abstract String getListaDisciplinas() throws Exception;
 	
 	public abstract boolean contemDisciplina(String nomeDisciplina);
+
+	@Override
+	public String toString() {
+		return "Nome: " + nome + "\n";
+	}
+	
+	
 }

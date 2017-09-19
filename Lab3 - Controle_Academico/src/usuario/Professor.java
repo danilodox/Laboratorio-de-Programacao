@@ -14,8 +14,11 @@ public class Professor extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void addDisciplina(String disciplina, String horarioInicio, String horarioFim) {
+	public void addDisciplina(String disciplina, String horarioInicio, String horarioFim) throws Exception {
 		Disciplina disc = new Disciplina(disciplina, horarioInicio, horarioFim);
+		if (mapaDeDisciplina.containsKey(disc.getNomeDisciplina())) {
+			throw new Exception("Disciplina ja cadastrada!!");
+		}
 		mapaDeDisciplina.put(disc.getNomeDisciplina(), disc);
 	}
 
@@ -26,7 +29,7 @@ public class Professor extends Usuario {
 		if (mapaDeDisciplina.size() > 0) {
 			for (Disciplina disciplina : mapaDeDisciplina.values()) {
 
-				horarioProf += disciplina.getNomeDisciplina() + ": \n";
+				horarioProf += disciplina.getNomeDisciplina() + ": ";
 				horarioProf += disciplina.getHorarioInicio() + " - " + disciplina.getHorarioFim() + "\n";
 
 			}
@@ -45,7 +48,7 @@ public class Professor extends Usuario {
 
 			for (Disciplina disciplina : mapaDeDisciplina.values()) {
 
-				listaDisciplinas += disciplina.toString() + "\n";
+				listaDisciplinas += disciplina.toString();
 
 			}
 			return listaDisciplinas;
@@ -55,7 +58,10 @@ public class Professor extends Usuario {
 
 	@Override
 	public boolean contemDisciplina(String nomeDisciplina) {
-		// TODO Auto-generated method stub
+		if (mapaDeDisciplina.containsKey(nomeDisciplina)) {
+			return true;
+		}
+		
 		return false;
 	}
 

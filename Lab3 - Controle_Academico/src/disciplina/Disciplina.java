@@ -26,7 +26,7 @@ public class Disciplina {
 
 	@Override
 	public String toString() {
-		return "Disciplina: " + getNomeDisciplina() + "\n" + "Horário: " + getHorarioInicio() + " - " + getHorarioFim();
+		return   getNomeDisciplina() + "\n";
 	}
 
 }

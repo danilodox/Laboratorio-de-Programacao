@@ -14,8 +14,11 @@ public class Aluno extends Usuario {
 
 	}
 
-	public void addDisciplinaAluno(String disciplina, String horarioInicio, String horarioFim) {
+	public void addDisciplinaAluno(String disciplina, String horarioInicio, String horarioFim) throws Exception {
 		Disciplina disc = new Disciplina(disciplina, horarioInicio, horarioFim);
+		if (mapaDeDisciplinaDoAluno.containsKey(disc.getNomeDisciplina())) {
+			throw new Exception("Disciplina ja cadastrada!!");
+		}
 		mapaDeDisciplinaDoAluno.put(disc.getNomeDisciplina(), disc);
 	}
 
@@ -25,7 +28,7 @@ public class Aluno extends Usuario {
 
 		if (mapaDeDisciplinaDoAluno.size() > 0) {
 			for (Disciplina disciplina : mapaDeDisciplinaDoAluno.values()) {
-				horarioAluno += disciplina.getNomeDisciplina() + ": \n";
+				horarioAluno += disciplina.getNomeDisciplina() + ": ";
 				horarioAluno += disciplina.getHorarioInicio() + " - " + disciplina.getHorarioFim() + "\n";
 			}
 			return horarioAluno;
@@ -43,7 +46,7 @@ public class Aluno extends Usuario {
 
 			for (Disciplina disciplina : mapaDeDisciplinaDoAluno.values()) {
 
-				listaDisciplinas += disciplina.toString() + "\n";
+				listaDisciplinas += disciplina.toString();
 
 			}
 			return listaDisciplinas;
@@ -54,10 +57,12 @@ public class Aluno extends Usuario {
 
 	@Override
 	public boolean contemDisciplina(String nomeDisciplina) {
-		if (mapaDeDisciplinaDoAluno.get(nomeDisciplina).getNomeDisciplina().equalsIgnoreCase(nomeDisciplina)) {
+		if (mapaDeDisciplinaDoAluno.containsKey(nomeDisciplina)) {
 			return true;
 		}
 		
 		return false;
 	}
+	
+	
 }
