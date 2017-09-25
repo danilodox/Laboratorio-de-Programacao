@@ -6,12 +6,11 @@ import java.util.Map;
 import disciplina.Disciplina;
 
 public class Professor extends Usuario {
-	Map<String, Disciplina> mapaDeDisciplina;
-
+	private Map<String, Disciplina> mapaDeDisciplina;
+	
 	public Professor(String nome) {
 		super(nome);
 		this.mapaDeDisciplina = new HashMap<>();
-		// TODO Auto-generated constructor stub
 	}
 
 	public void addDisciplina(String disciplina, String horarioInicio, String horarioFim) throws Exception {
@@ -21,6 +20,7 @@ public class Professor extends Usuario {
 		}
 		mapaDeDisciplina.put(disc.getNomeDisciplina(), disc);
 	}
+	
 
 	@Override
 	public String getHorario() throws Exception {

@@ -9,45 +9,66 @@ import sistema.ControleAcademico;
 import usuario.Aluno;
 
 public class ControleAcademicoTest {
-	Aluno aluno1, aluno2, aluno3;
 	ControleAcademico controle;
+	
 	@Before
 	public void setUp() throws Exception {
 		controle = new ControleAcademico();
 		
-		aluno1 = new Aluno("Aline");
-		aluno2 = new Aluno("Marcelo");
-		aluno3 = new Aluno("Maria");
+		controle.criaAluno("Aline");
+		controle.criaAluno("Marcelo");
+		controle.criaAluno("Maria");
+		controle.criaAluno("Gustavo");
+		controle.criaAluno("Igor");
 		
-		aluno1.addDisciplinaAluno("OAC", "7:00", "9:00");
-		aluno1.addDisciplinaAluno("Programacao", "9:00", "11:00");
-		aluno1.addDisciplinaAluno("Calculo", "7:00", "9:00");
 		
-		aluno2.addDisciplinaAluno("OAC", "7:00", "9:00");
-		aluno2.addDisciplinaAluno("Programacao", "9:00", "11:00");
+		controle.addDisciplina("Aline", "Programacao", "9:00", "11:00");
+		controle.addDisciplina("Marcelo", "Programacao", "9:00", "11:00");
+		controle.addDisciplina("Maria", "Programacao", "9:00", "11:00");
+		controle.addDisciplina("Gustavo", "Programacao", "9:00", "11:00");
+		controle.addDisciplina("Igor", "Programacao", "9:00", "11:00");
 		
-		aluno3.addDisciplinaAluno("OAC", "7:00", "9:00");
+		controle.addDisciplina("Gustavo", "OAC", "9:00", "11:00");
+		controle.addDisciplina("Igor", "OAC", "9:00", "11:00");
 		
-		controle.addAluno(aluno1);
-		controle.addAluno(aluno2);
-		controle.addAluno(aluno3);
+		controle.criaProf("Sabrina");
+		controle.addDisciplina("Sabrina", "Laboratorio", "9:00", "11:00");
 	}
 
 	@Test
 	public void testGetNumeroAlunosNaDisciplina() throws Exception {
-		assertEquals(3, controle.getNumeroAlunosNaDisciplina("OAC"));
-		assertEquals(1, controle.getNumeroAlunosNaDisciplina("Calculo"));
-		assertEquals(2, controle.getNumeroAlunosNaDisciplina("Programacao"));
+		assertEquals("Total de matriculados na disciplina de OAC: 2 alunos\n", controle.getNumeroAlunosNaDisciplina("OAC"));
+		assertEquals("Total de matriculados na disciplina de Calculo: 0 alunos\n", controle.getNumeroAlunosNaDisciplina("Calculo"));
+		assertEquals("Total de matriculados na disciplina de Programacao: 5 alunos\n", controle.getNumeroAlunosNaDisciplina("Programacao"));
 	}
 	
 
 	@Test
 	public void testGetAlunosNaDisciplina() throws Exception {
-		System.out.println(controle.getAlunosNaDisciplina("OAC"));
-		assertEquals("Nome: Aline\n"
-				+ 	 "Nome: Marcelo\n"
-				+    "Nome: Maria\n", controle.getAlunosNaDisciplina("OAC"));
+		assertEquals("Alunos na disciplina de OAC\n\n"
+				   + "Nome: Igor ------ Matricula: 2277281\n"
+				   + "Nome: Gustavo ------ Matricula: 2047620235\n", controle.getAlunosNaDisciplina("OAC"));
 	}
 	
+	@Test
+	public void testAddDisciplina() throws Exception {
+		assertTrue(controle.addDisciplina("Aline", "OAC", "7:00", "9:00"));
+		
+	}
+	
+	@Test(expected = java.lang.Exception.class)
+	public void testAddDisciplinaFalse() throws Exception {
+		assertFalse("Kaique nao existe", controle.addDisciplina("Kaique", "OAC", "9:00", "11:00"));
+		assertFalse("Disciplina ja cadastrada", controle.addDisciplina("Aline", "Programacao", "9:00", "11:00"));
+		assertFalse("Disciplina ja contem professor!", controle.addDisciplina("Sabrina", "Laboratorio", "9:00", "11:00"));
+		
+	}
+	
+	@Test
+	public void getProfNaDisciplina() {
+		assertEquals("Disciplina: Laboratorio, ministrada por Professor(a): Sabrina\n", controle.getProfNaDisciplina("Laboratorio"));
+	}
+	
+		
 
 }

@@ -6,15 +6,16 @@ import java.util.Map;
 import disciplina.Disciplina;
 
 public class Aluno extends Usuario {
-	Map<String, Disciplina> mapaDeDisciplinaDoAluno;
+	private Map<String, Disciplina> mapaDeDisciplinaDoAluno;
 
 	public Aluno(String nome) {
 		super(nome);
 		mapaDeDisciplinaDoAluno = new HashMap<>();
 
 	}
+	
 
-	public void addDisciplinaAluno(String disciplina, String horarioInicio, String horarioFim) throws Exception {
+	public void addDisciplina(String disciplina, String horarioInicio, String horarioFim) throws Exception {
 		Disciplina disc = new Disciplina(disciplina, horarioInicio, horarioFim);
 		if (mapaDeDisciplinaDoAluno.containsKey(disc.getNomeDisciplina())) {
 			throw new Exception("Disciplina ja cadastrada!!");
@@ -53,16 +54,14 @@ public class Aluno extends Usuario {
 		}
 		throw new Exception("Nenhuma disciplina cadastrada no momento");
 	}
-	
 
 	@Override
 	public boolean contemDisciplina(String nomeDisciplina) {
 		if (mapaDeDisciplinaDoAluno.containsKey(nomeDisciplina)) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	
+
 }

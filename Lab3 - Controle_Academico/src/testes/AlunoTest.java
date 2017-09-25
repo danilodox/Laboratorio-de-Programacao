@@ -17,19 +17,19 @@ public class AlunoTest {
 		aluno2 = new Aluno("Maria");
 		
 		
-		aluno1.addDisciplinaAluno("Calculo", "7:00", "10:00");
-		aluno1.addDisciplinaAluno("Programacao", "11:00", "13:00");
+		aluno1.addDisciplina("Calculo", "7:00", "10:00");
+		aluno1.addDisciplina("Programacao", "11:00", "13:00");
 	}
 	
 	
 	@Test
 	public void addDisciplina() throws Exception {
-		aluno2.addDisciplinaAluno("OAC", "11:00", "13:00");
+		aluno2.addDisciplina("OAC", "11:00", "13:00");
 	}
 
 	@Test(expected = java.lang.Exception.class)
 	public void addDisciplinaFalse() throws Exception {
-		aluno1.addDisciplinaAluno("Programacao", "11:00", "13:00");
+		aluno1.addDisciplina("Programacao", "11:00", "13:00");
 	}
 
 	@Test

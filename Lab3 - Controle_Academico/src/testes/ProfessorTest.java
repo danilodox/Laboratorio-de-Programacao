@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import disciplina.Disciplina;
 import usuario.Professor;
 
 public class ProfessorTest {
