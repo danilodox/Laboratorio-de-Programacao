@@ -1,6 +1,6 @@
 package figurasGeometricas;
 
-public interface FIguraGeometrica {
+public interface FiguraGeometrica {
 	public double calculaArea();
 	
 	public double calculaPerimetro();

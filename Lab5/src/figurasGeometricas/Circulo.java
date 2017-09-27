@@ -1,10 +1,15 @@
 package figurasGeometricas;
 
-public class Circulo implements FIguraGeometrica {
+public class Circulo implements FiguraGeometrica {
 	private double raioCirculo;
 
-	public Circulo(double raioCirculo) {
-		this.raioCirculo = raioCirculo;
+	//lanca exception caso o valor do raio seja menor ou igual a 0
+	public Circulo(double raioCirculo) throws Exception{
+		if (raioCirculo <= 0){
+			throw new Exception("Valor do raio do circulo invalido!");
+		}else{
+			this.raioCirculo = raioCirculo;
+		}
 	}
 
 	@Override

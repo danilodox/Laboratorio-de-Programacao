@@ -1,12 +1,18 @@
 package figurasGeometricas;
 
-public class Retangulo implements FIguraGeometrica {
+public class Retangulo implements FiguraGeometrica {
 	private double largura;
 	private double altura;
 
-	public Retangulo(double altura, double largura) {
-		this.largura = largura;
-		this.altura = altura;
+	/*lanca exception caso o valor da altura e/ou largura seja menor ou igual a 0
+	ou a quando altura e largura sao iguais*/
+	public Retangulo(double altura, double largura) throws Exception{
+		if ((largura <= 0 || altura <= 0) || altura == largura){
+			throw new Exception("Valores invalidos para o retangulo!");
+		}else{
+			this.largura = largura;
+			this.altura = altura;
+		}
 
 	}
 
@@ -34,6 +40,6 @@ public class Retangulo implements FIguraGeometrica {
 
 	@Override
 	public String toString() {
-		return "O retângulo criado tem altura de tamanho: " + altura + " e largura de: " + largura;
+		return "O retangulo criado tem altura de tamanho: " + altura + " e largura de: " + largura;
 	}
 }

@@ -1,17 +1,22 @@
 package figurasGeometricas;
 
-public class Quadrado implements FIguraGeometrica {
+public class Quadrado implements FiguraGeometrica {
 
 	private double larguraQuadrado;
 
-	public Quadrado(double larguraQuadrado) {
-		this.larguraQuadrado = larguraQuadrado;
+	//lanca exception caso o valor do lado seja menor ou igual a 0
+	public Quadrado(double larguraQuadrado) throws Exception {
+		if (larguraQuadrado <= 0){
+			throw new Exception("Valor do lado do quadrado invalido!");
+		}else{
+			this.larguraQuadrado = larguraQuadrado;
+		}
 	}
 
 	@Override
 	public double calculaArea() {
 		// TODO Auto-generated method stub
-		return 2 * larguraQuadrado;
+		return Math.pow(larguraQuadrado, 2);
 	}
 
 	@Override
