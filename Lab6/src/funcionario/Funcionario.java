@@ -1,8 +1,6 @@
 package funcionario;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import filme.Filme;
@@ -11,17 +9,15 @@ public class Funcionario {
 	private String nome;
 	private TipoDeFuncionario statusDoFuncionario;
 	private Set<Funcao> funcao;
-	//private Map<String, Filme> mapaDeFilmes;
 
 	public Funcionario(String nome, Set<Funcao> funcao, TipoDeFuncionario tipoDeFuncionario) {
 		this.nome = nome;
 		this.funcao = funcao;
 		this.statusDoFuncionario = tipoDeFuncionario;
-		//mapaDeFilmes = new HashMap<>();
 	}
-	
-	public void adicionaFilme(Filme filme) {
-		
+
+	public void getFilmografia() {
+		//...
 	}
 
 	public String getNome() {
