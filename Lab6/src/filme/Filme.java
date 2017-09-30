@@ -1,27 +1,20 @@
 package filme;
 
-import java.util.ArrayList;
 import java.util.Set;
 
-import funcionario.Ator;
-import funcionario.Camera;
-import funcionario.Cinegrafista;
-import funcionario.Diretor;
 import funcionario.Funcionario;
-import funcionario.Roteirista;
 
 public class Filme {
+
 	private String nomeFilme;
 	private int ano;
-	private Diretor diretor;
-	private Roteirista roteirista;
-	private Set<Ator> elenco;
-	private Cinegrafista cinegrafista;
-	private Camera cameraMan;
-	private ArrayList<Funcionario> listaDeFuncionarios;
+	private Funcionario diretor;
+	private Funcionario roteirista;
+	private Set<Funcionario> elenco;
+	private Funcionario cinegrafista;
 
-	public Filme(String nomeFilme, int ano, Diretor diretor, Roteirista roteirista, Set<Ator> elenco,
-			Cinegrafista cinegrafista, Camera cameraMan) {
+	public Filme(String nomeFilme, int ano, Funcionario diretor, Funcionario roteirista, Set<Funcionario> elenco,
+			Funcionario cinegrafista) {
 		super();
 		this.nomeFilme = nomeFilme;
 		this.ano = ano;
@@ -29,27 +22,6 @@ public class Filme {
 		this.roteirista = roteirista;
 		this.elenco = elenco;
 		this.cinegrafista = cinegrafista;
-		this.cameraMan = cameraMan;
-		listaDeFuncionarios = new ArrayList<>();
-
-	}
-
-	public void adicionaFuncionario(Funcionario funcionario) {
-		if (funcionario.getStatusDoFuncionario() instanceof Diretor) {
-			// adiciona diretor...
-
-		} else if (funcionario.getStatusDoFuncionario() instanceof Ator) {
-			// adiciona ator...
-
-		} else if (funcionario.getStatusDoFuncionario() instanceof Camera) {
-			// adiciona camera...
-
-		} else if (funcionario.getStatusDoFuncionario() instanceof Cinegrafista) {
-			// adiciona cinegrafista...
-
-		} else if (funcionario.getStatusDoFuncionario() instanceof Roteirista) {
-			// adiciona roteirista...
-		}
 
 	}
 
@@ -61,28 +33,22 @@ public class Filme {
 		return ano;
 	}
 
-	public Diretor getDiretor() {
+	public Funcionario getDiretor() {
 		return diretor;
 	}
 
-	public Roteirista getRoteirista() {
+	public Funcionario getRoteirista() {
 		return roteirista;
 	}
 
-	public Set<Ator> getElenco() {
+	public Set<Funcionario> getElenco() {
 		return elenco;
 	}
 
-	public Cinegrafista getCinegrafista() {
+	public Funcionario getCinegrafista() {
 		return cinegrafista;
 	}
 
-	public Camera getCameraMan() {
-		return cameraMan;
-	}
-
-	public ArrayList<Funcionario> getListaDeFuncionarios() {
-		return listaDeFuncionarios;
-	}
+	
 
 }

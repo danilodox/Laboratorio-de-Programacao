@@ -1,5 +1,5 @@
 package funcionario;
 
-public class Roteirista {
+public class Roteirista implements Funcao{
 
 }

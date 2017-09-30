@@ -1,5 +1,5 @@
 package funcionario;
 
-public class Ator {
-	
+public class Ator implements Funcao{
+
 }

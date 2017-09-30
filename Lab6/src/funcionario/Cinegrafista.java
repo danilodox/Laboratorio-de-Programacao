@@ -1,5 +1,5 @@
 package funcionario;
 
-public class Cinegrafista {
+public class Cinegrafista implements Funcao{
 
 }
