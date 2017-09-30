@@ -1,19 +1,23 @@
 package funcionario;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import filme.Filme;
 
-public class Funcionario {
+public abstract class Funcionario {
 	private String nome;
-	private TipoDeFuncionario statusDoFuncionario;
-	private Set<Funcao> funcao;
+	private TipoDeFuncionario funcaoDoFuncionario;
+	//private Set<Funcao> funcao;
+	private Map<String, Filme> filmografia;
 
-	public Funcionario(String nome, Set<Funcao> funcao, TipoDeFuncionario tipoDeFuncionario) {
+	public Funcionario(String nome,/* Set<Funcao> funcao,*/ TipoDeFuncionario tipoDeFuncionario) {
 		this.nome = nome;
-		this.funcao = funcao;
-		this.statusDoFuncionario = tipoDeFuncionario;
+		//this.funcao = funcao;
+		filmografia = new HashMap<>();
+		this.funcaoDoFuncionario = tipoDeFuncionario;
 	}
 
 	public void getFilmografia() {
@@ -25,10 +29,10 @@ public class Funcionario {
 	}
 
 	public TipoDeFuncionario getStatusDoFuncionario() {
-		return statusDoFuncionario;
+		return funcaoDoFuncionario;
 	}
 
-	public Set<String> getFuncao() {
+	/*public Set<String> getFuncao() {
 		Set<String> aux = new HashSet<>();
 
 		for (Funcao funcao : this.funcao) {
@@ -36,6 +40,6 @@ public class Funcionario {
 			aux.add(funcao.toString());
 		}
 		return aux;
-	}
+	}*/
 
 }
