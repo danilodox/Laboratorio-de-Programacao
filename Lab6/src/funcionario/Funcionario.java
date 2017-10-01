@@ -18,9 +18,13 @@ public class Funcionario {
 		this.funcaoDoFuncionario = tipoDeFuncionario;
 	}
 
-	public void getFilmografia() {
-		//...
+	
+
+	public Map<String, Filme> getFilmografia() {
+		return filmografia;
 	}
+
+
 
 	public String getNome() {
 		return nome;
