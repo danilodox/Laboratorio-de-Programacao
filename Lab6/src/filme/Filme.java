@@ -1,7 +1,6 @@
 package filme;
 
 import java.util.Set;
-
 import funcionario.Funcionario;
 
 public class Filme {
@@ -24,6 +23,16 @@ public class Filme {
 		this.cinegrafista = cinegrafista;
 
 	}
+	
+	public Funcionario getAtor(String nomeAtor) {
+		for (Funcionario funcionario : elenco) {
+			if (funcionario.getNome().equals(nomeAtor)) {
+				return funcionario;
+			}
+		}
+		return null;
+		
+	}
 
 	public String getNomeFilme() {
 		return nomeFilme;
@@ -44,9 +53,23 @@ public class Filme {
 	public Set<Funcionario> getElenco() {
 		return elenco;
 	}
+	
+	public String mostrarElenco() {
+		String elenco = "";
+		for (Funcionario cadaAtor : this.elenco) {
+			elenco += "" + cadaAtor.getNome() + ", ";
+		}
+		return elenco;
+	}
 
 	public Funcionario getCinegrafista() {
 		return cinegrafista;
+	}
+
+	@Override
+	public String toString() {
+		return "Filme: " + nomeFilme + "\n ano: " + ano + "\n diretor: " + diretor.getNome() + "\n roteirista: " + roteirista.getNome()
+				+ "\n elenco: " + mostrarElenco() + "\n cinegrafista: " + cinegrafista.getNome();
 	}
 
 	
