@@ -1,101 +1,88 @@
 package sistema;
 
-import estrutura.Pilha;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 
 public class Sistema {
 
-	private Pilha pilha;
+	private Map<String, String> tagsLinks;
+	private Set<String> openTags;
+	private Set<String> closeTags;
+	private Stack<String> stack;
 
-	public Sistema(String conteudo) {
-		pilha = new Pilha();
-		separarTexto(conteudo);
+	public Sistema() {
+		tagsLinks = buildTagsLinks();
+		openTags = buildOpenTags();
+		closeTags = buildCloseTags();
+		stack = new Stack<String>();
 	}
 
-	// separa o texto fornecido em palavras
-	public void separarTexto(String conteudo) {
-		String[] arrayPalavras = conteudo.split(" ");
-		for (String p : arrayPalavras) {
-			adicionarPalavraPilha(p);
-		}
-	}
+	public boolean validaTag(String text) {
+		String[] textList = text.split(" "); // divide a string por palavras e adiciona ao array
 
-	private void adicionarPalavraPilha(String palavra) {
-		pilha.empilhar(palavra);
-	}
+		int i = 0;
+		boolean validate = true;
+		while (i < textList.length && validate) {
 
-	/*public void removerPalavraTopoPilha() {
-		pilha.desempilhar();
-	}
+			String string = textList[i];
+			if (openTags.contains(string)) { // se contain uma tag de abertura
+				stack.push(string); // entao adiciona na pilha
 
-	public boolean verificarPilhaVazia() {
-		return pilha.vazia();
-	}
+			} else if (closeTags.contains(string)) { // se nao, se contem tag fechando
+				if (!stack.empty() && stack.peek().equals(tagsLinks.get(string))) { // if a pilha nao estah vazia e o
+																					// topo da pilha eh igual ah uma tag
+																					// do map abrindo,
+					stack.pop();													// entao exclua a tag da pilha
 
-	public int verificarTamanhoDaPilha() {
-		return pilha.tamanho();
-	}
-
-	public String verificarTopoPilha() {
-		return pilha.exibeUltimoValor();
-	}*/
-
-	// verifica se as tags estao corretas
-	public boolean verificarTags() {
-		String palavra = "";
-		boolean resposta = false;
-		int contador = 0;
-
-		// verifica se a tag <body> estah correta
-		if ((pilha.getTexto().get(0).equalsIgnoreCase("<body>"))
-				&& (pilha.getTexto().get(pilha.getPosicaoPilha()).equalsIgnoreCase("</body>"))) {
-			
-			// inicia a iteracao para o corpo do texto
-			for (String p : pilha.getTexto()) {
-				palavra = "";
-				
-				// exclui a verificacao de <body> q jah foi feita
-				if (!(p.equalsIgnoreCase("<body>")) && !(p.equalsIgnoreCase("</body>"))) {
-					// verificando se as tags de inicializacao possuem tags de encerramento
-					if (p.startsWith("<")) {
-						// monta a palavra sem o "<"
-						for (int i = 1; i < p.length(); i++) {
-							palavra += p.charAt(i);
-						}
-						// procura o encerramento da tag com "</"
-						for (String p1 : pilha.getTexto()) {
-							if (p1.equalsIgnoreCase("</" + palavra)) {
-								resposta = true;
-							} // encerra a verificacao se nao encontrou a tag de encerramento e os elementos
-								// da pilha jah foram percorridos
-							if (resposta == false && contador == pilha.getTexto().size()) {
-								return resposta;
-							}
-						}
-
-					} // verificando se as tags de encerramento possuem tags de inicializacao
-					if (p.startsWith("</")) {
-						// monta a palavra sem o "</"
-						for (int i = 2; i < p.length(); i++) {
-							palavra += p.charAt(i);
-						}
-						// procura a inicializacao da tag com "<"
-						for (String p1 : pilha.getTexto()) {
-							if (p1.equalsIgnoreCase("<" + palavra)) {
-								resposta = true;
-							} // encerra a verificacao se nao encontrou a tag de inicializacao e os elementos
-								// da pilha jah foram percorridos
-							if (resposta == false && contador == pilha.getTexto().size()) {
-								return resposta;
-							}
-						}
-					}
+				} else {
+					validate = false;
 				}
 			}
-		} else {
-			return resposta;
+			i++;
 		}
 
-		return resposta;
+		if (!stack.isEmpty()) {
+			validate = false;
+		}
+
+		return validate;
+
+	}
+
+	private Map<String, String> buildTagsLinks() {
+		Map<String, String> tagsLinks = new HashMap<>();
+		tagsLinks.put("</body>", "<body>");
+		tagsLinks.put("</center>", "<center>");
+		tagsLinks.put("</h1>", "<h1>");
+		tagsLinks.put("</p>", "<p>");
+		tagsLinks.put("</ol>", "<ol>");
+		tagsLinks.put("</li>", "<li>");
+		return tagsLinks;
+	}
+
+	private Set<String> buildOpenTags() {
+		Set<String> openTags = new HashSet<>();
+		openTags.add("<body>");
+		openTags.add("<center>");
+		openTags.add("<h1>");
+		openTags.add("<p>");
+		openTags.add("<ol>");
+		openTags.add("<li>");
+		return openTags;
+	}
+
+	private Set<String> buildCloseTags() {
+		Set<String> closeTags = new HashSet<>();
+		closeTags.add("</body>");
+		closeTags.add("</center>");
+		closeTags.add("</h1>");
+		closeTags.add("</p>");
+		closeTags.add("</ol>");
+		closeTags.add("</li>");
+		return closeTags;
 	}
 
 }
