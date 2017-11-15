@@ -21,7 +21,6 @@ public class Main {
 		String string = scan.nextLine();
 		String[] arrayPalavra = string.split("");
 
-		// Iterator<String> conjuntoAuxIterator = aux.iterator();
 
 		char primeiraLetra = arrayPalavra[0].charAt(0);
 		;
